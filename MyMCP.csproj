@@ -13,4 +13,10 @@
     <PackageReference Include="ModelContextProtocol" Version="2.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="tests/**" />
+    <Compile Remove="bin/**" />
+    <Compile Remove="obj/**" />
+  </ItemGroup>
+
 </Project>

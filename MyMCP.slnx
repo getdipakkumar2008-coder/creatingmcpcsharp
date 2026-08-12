@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/tests/">
+    <Project Path="tests/MyMCP.Tests/MyMCP.Tests.csproj" />
+  </Folder>
+  <Project Path="MyMCP.csproj" />
+</Solution>

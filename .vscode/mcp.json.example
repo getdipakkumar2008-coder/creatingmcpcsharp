@@ -1,0 +1,24 @@
+{
+	"servers": {
+		"my-mcp-server-1c736836": {
+			"type": "stdio",
+			"command": "dotnet",
+			"args": [
+				"run",
+				"--project",
+				"C:\\Code\\mymcp\\MyMCP\\MyMCP.csproj"
+			],
+			"env": {
+				"EMPLOYEE_DB_CONNECTION": "${input:employeeDbConnection}"
+			}
+		}
+	},
+	"inputs": [
+		{
+			"id": "employeeDbConnection",
+			"type": "promptString",
+			"description": "Connection string for the employee DB (e.g. Server=<host>;Database=testdb;User Id=mcp_app;Password=<secret>;TrustServerCertificate=True;)",
+			"password": true
+		}
+	]
+}

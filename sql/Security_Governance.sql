@@ -1,3 +1,9 @@
+-- Run with sqlcmd (or set SQLCMD mode in SSMS) and pass real passwords, e.g.:
+--   sqlcmd -S <host> -i Security_Governance.sql -v McpAppPassword="<secret>" -v EmpWriterPassword="<secret>"
+-- Never commit real passwords in place of the :setvar defaults below.
+:setvar McpAppPassword "CHANGE_ME_mcp_app_password"
+:setvar EmpWriterPassword "CHANGE_ME_emp_writer_password"
+
 USE testdb;
 GO
 
@@ -25,7 +31,7 @@ GO
 
 -- Read-only login used by the MCP application.
 IF NOT EXISTS (SELECT 1 FROM sys.server_principals WHERE name = 'mcp_app')
-    CREATE LOGIN mcp_app WITH PASSWORD = 'McpApp#2026!Rd', CHECK_POLICY = ON;
+    CREATE LOGIN mcp_app WITH PASSWORD = '$(McpAppPassword)', CHECK_POLICY = ON;
 IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'mcp_app')
     CREATE USER mcp_app FOR LOGIN mcp_app;
 ALTER ROLE db_datareader ADD MEMBER mcp_app;
@@ -35,7 +41,7 @@ GO
 
 -- Writer login: can add/update employees but NOT delete or truncate/alter.
 IF NOT EXISTS (SELECT 1 FROM sys.server_principals WHERE name = 'emp_writer')
-    CREATE LOGIN emp_writer WITH PASSWORD = 'EmpWriter#2026!Wr', CHECK_POLICY = ON;
+    CREATE LOGIN emp_writer WITH PASSWORD = '$(EmpWriterPassword)', CHECK_POLICY = ON;
 IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'emp_writer')
     CREATE USER emp_writer FOR LOGIN emp_writer;
 GRANT SELECT, INSERT, UPDATE ON dbo.Employeedata TO emp_writer;

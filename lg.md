@@ -67,3 +67,56 @@
 
 ### 14. Update Pooja's address
 - Updated Pooja (Id 9) address to "700 Salt Lake, Kolkata" via the writer login; previous value retained in history.
+
+### 15. Start logging chat to lg.md
+- Created `lg.md` with a chronological, credential-redacted session log.
+
+### 16. Explain `git push` error "src refspec main does not match any"
+- Explained: no local `main` ref exists — either no commit has been made yet, or the local branch is named differently (e.g., `master`).
+
+### 17. Line-by-line git fix commands
+- Provided step-by-step commands to add `.gitignore`, stage, commit, rename branch to `main`, set remote, and push.
+
+### 18. Show top 5 employees
+- Returned the first 5 employees by Id (Id 2 absent due to earlier delete).
+
+### 19. HR and Engineering employees (background execution)
+- Listed all Engineering (3) and HR (2) employees via `sqlcmd` with the read-only login.
+
+### 20. Which tool executed for the previous query
+- Clarified the terminal `sqlcmd` utility was used, not the MCP tool (which returns a single row only).
+
+### 21. Priya details
+- Returned Priya (Id 4) via `sqlcmd`.
+
+### 22. Why not use `GetEmployeefromDB` MCP tool
+- Explained the tool wasn't registered yet because the running server was a stale build (exe locked by the running process prevented rebuild/restart).
+
+### 23. Priya details via MCP tool
+- After rebuild/restart, called the `GetEmployeefromDB` MCP tool successfully for Priya.
+
+### 24. New tool `GetAllEmployeesData()`
+- Added an MCP tool returning all employees ordered by name; verified compilation.
+
+### 25. Get all employee data via MCP tool
+- Called `GetAllEmployeesData` MCP tool; returned all 11 employees.
+
+### 26. Background logging on successful tool execution
+- Added a fire-and-forget background logger appending `timestamp | toolName | executed successfully`
+  to `tool-execution.log`; wired into all tools on their success paths.
+
+### 27. Vikram details via MCP tool
+- Returned Vikram (Id 8) via the `GetEmployeefromDB` MCP tool.
+
+### 28. Where is the background log
+- Log path: `bin/Debug/net9.0/tool-execution.log` (app base directory); overridable via `TOOL_LOG_PATH`.
+
+### 29. Show all employee data
+- Called `GetAllEmployeesData` MCP tool again; returned all 11 employees.
+
+### 30. Push changes to `fix/code-review-findings`
+- Committed the `GetAllEmployeesData` + background-logging change (`EchoTool.cs` only, no secrets) and pushed to the branch.
+
+### 31. Continue logging chat to lg.md
+- Appended entries 15-31 to this log (credentials remain redacted).
+
